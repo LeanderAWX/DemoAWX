@@ -1,0 +1,23 @@
+- name: Play 1 Create the Demo Tenant
+  hosts: all
+  gather_facts: no
+######
+
+  tasks:
+
+   - set_fact:
+      aci_login: &aci_login
+        host: "{{ inventory_hostname }}"
+        username: "{{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+        password: "{{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+        use_ssl: yes
+        validate_certs: no
+
+
+######### Tenant Config ##########
+   - name: Set {{ tenant_name }} Tenant
+     aci_tenant:
+       <<: *aci_login
+       state: present
+       tenant: "{{ tenant_name }}"
+     delegate_to: localhost
