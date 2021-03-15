@@ -7,7 +7,7 @@
 ######### Tenant Config ##########
    - name: Set {{ tenant_name }} Tenant
      aci_tenant:
-       <<: *aci_login
+       #<<: *aci_login#
        state: present
        tenant: "{{ tenant_name }}"
      delegate_to: localhost
