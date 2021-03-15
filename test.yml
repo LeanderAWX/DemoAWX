@@ -18,7 +18,7 @@
      aci_tenant:
        <<: *aci_login
        tenant: "{{ tenant_name }}"
-       description: Production tenant "{{ tenant_name }}"
+       description: Production tenant
        state: present
      delegate_to: localhost
       
