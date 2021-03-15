@@ -11,10 +11,10 @@
    #    state: present
     #   tenant: "{{ tenant_name }}"
      #delegate_to: localhost
-     - name: Add a new tenant
+     - name: Add {{ tenant_name }} tenant
        cisco.aci.aci_tenant:
-         host: all
-         tenant: production
-         description: Production tenant
+         host: "{{ inventory_hostname }}"
+         tenant: {{ tenant_name }}
+         description: Production tenant {{ tenant_name }}
          state: present
        delegate_to: localhost
