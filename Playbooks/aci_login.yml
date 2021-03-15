@@ -1,1 +1,14 @@
+- name: Play 1 Login ACI
+  hosts: all
+  gather_facts: no
+######
 
+  tasks:
+
+   - set_fact:
+      aci_login: &aci_login
+        host: "{{ inventory_hostname }}"
+        username: "{{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+        password: "{{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+        use_ssl: yes
+        validate_certs: no
