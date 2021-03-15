@@ -1,9 +1,6 @@
 - name: Play 2 Create the Demo Tenant
   hosts: all
   gather_facts: no
-- name: Play 1 Create the Demo Tenant
-  hosts: all
-  gather_facts: no
 ######
 
   tasks:
