@@ -1,1 +1,13 @@
+- name: Play 2 Create the Demo Tenant
+  hosts: all
+  gather_facts: no
+######
 
+  tasks:
+######### Tenant Config ##########
+   - name: Set {{ tenant_name }} Tenant
+     aci_tenant:
+       <<: *aci_login
+       state: present
+       tenant: "{{ tenant_name }}"
+     delegate_to: localhost
