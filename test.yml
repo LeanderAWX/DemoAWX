@@ -15,9 +15,15 @@
 
 
 ######### Tenant Config ##########
-   - name: Set {{ tenant_name }} Tenant
-     aci_tenant:
-       <<: *aci_login
-       state: present
-       tenant: "{{ tenant_name }}"
-     delegate_to: localhost
+#   - name: Set {{ tenant_name }} Tenant
+#     aci_tenant:
+#       <<: *aci_login
+#       state: present
+#       tenant: "{{ tenant_name }}"
+#     delegate_to: localhost
+    - name: Add {{ tenant_name }} tenant
+      cisco.aci.aci_tenant:
+        tenant: "{{ tenant_name }}"
+        description: Production tenant "{{ tenant_name }}"
+        state: present
+      delegate_to: localhost
