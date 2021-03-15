@@ -17,7 +17,6 @@
    - name: Add {{ tenant_name }} tenant
      aci_tenant:
        <<: *aci_login
-       hosts: "{{ inventory_hostname }}"
        tenant: "{{ tenant_name }}"
        description: "Production tenant {{ tenant_name }}"
        state: present
