@@ -14,11 +14,11 @@
         validate_certs: no
 
 
-   - name: Add {{ tenant_name }} tenant
+   - name: Add {{ item.tenant_name }} tenant
      aci_tenant:
        <<: *aci_login
-       tenant: "{{ tenant_name }}"
-       description: "Production tenant {{ tenant_name }}"
+       tenant: "{{ item.tenant_name }}"
+       description: "Production tenant {{ item.tenant_name }}"
        state: present
      delegate_to: localhost
       
