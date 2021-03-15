@@ -1,20 +1,26 @@
 - name: Play 2 Create the Demo Tenant
   hosts: all
   gather_facts: no
+- name: Play 1 Create the Demo Tenant
+  hosts: all
+  gather_facts: no
 ######
 
   tasks:
-######### Tenant Config ##########
- #  - name: Set {{ tenant_name }} Tenant
-  #   aci_tenant:
-       #<<: *aci_login#
-   #    state: present
-    #   tenant: "{{ tenant_name }}"
-     #delegate_to: localhost
-    - name: Add "{{ tenant_name }}" tenant
-      cisco.aci.aci_tenant:
+
+   - set_fact:
+      aci_login: &aci_login
         host: "{{ inventory_hostname }}"
-        tenant: "{{ tenant_name }}"
-        description: Production tenant "{{ tenant_name }}"
-        state: present
-      delegate_to: localhost
+        username: "{{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+        password: "{{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+        use_ssl: yes
+        validate_certs: no
+
+######Creat Tenant#####
+   - name: Add {{ tenant_name }} tenant
+     aci_tenant:
+       <<: *aci_login
+       tenant: "{{ tenant_name }}"
+       description: Production tenant
+       state: present
+     delegate_to: localhost
