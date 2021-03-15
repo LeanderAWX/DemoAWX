@@ -14,7 +14,7 @@
      - name: Add {{ tenant_name }} tenant
        cisco.aci.aci_tenant:
          host: "{{ inventory_hostname }}"
-         tenant: {{ tenant_name }}
-         description: Production tenant {{ tenant_name }}
+         tenant: "{{ tenant_name }}"
+         description: Production tenant "{{ tenant_name }}"
          state: present
        delegate_to: localhost
