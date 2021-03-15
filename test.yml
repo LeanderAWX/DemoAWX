@@ -15,7 +15,7 @@
 
 
    - name: Add {{ tenant_name }} tenant
-     cisco.aci.aci_tenant:
+     aci_tenant:
        tenant: "{{ tenant_name }}"
        description: Production tenant "{{ tenant_name }}"
        state: present
