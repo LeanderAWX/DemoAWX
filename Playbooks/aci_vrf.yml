@@ -16,6 +16,7 @@
 ######Creat Tenant#####
     - name: Add a new VRF to a tenant
     cisco.aci.aci_vrf:
+      <<: *aci_login
       vrf: {{ vrf_name }}
       tenant: {{ tenant_name }}
       descr: FHFulda VRF
