@@ -13,7 +13,7 @@
         use_ssl: yes
         validate_certs: no
 
-######Creat BD#####
+######Creat EPG#####
    - name: Add a new EPG
      aci_epg:
        <<: *aci_login
