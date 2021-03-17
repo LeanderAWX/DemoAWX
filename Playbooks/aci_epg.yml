@@ -1,1 +1,29 @@
+- name: Play 4 Create a EPG
+  hosts: all
+  gather_facts: no
+######
 
+  tasks:
+
+   - set_fact:
+      aci_login: &aci_login
+        host: "{{ inventory_hostname }}"
+        username: "{{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+        password: "{{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+        use_ssl: yes
+        validate_certs: no
+
+######Creat BD#####
+   - name: Add a new EPG
+     aci_epg:
+       <<: *aci_login
+       tenant: "{{ tenant_name }}"
+       ap: "{{ ap_name }}"
+       epg: "{{ epg_name }}"
+       description: Web Intranet EPG
+       bd: "{{ bd_name }}"
+       monitoring_policy: default
+       preferred_group: yes
+       state: present
+     delegate_to: localhost
+   
