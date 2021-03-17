@@ -1,0 +1,26 @@
+- name: Play 3 Create a BD
+  hosts: all
+  gather_facts: no
+######
+
+  tasks:
+
+   - set_fact:
+      aci_login: &aci_login
+        host: "{{ inventory_hostname }}"
+        username: "{{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+        password: "{{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+        use_ssl: yes
+        validate_certs: no
+
+######Creat BD#####
+   - name: Add Bridge Domain
+     aci_bd:
+       <<: *aci_login
+       validate_certs: no
+       tenant: "{{ tenant_name }}"
+       bd: "{{ bd_name }}"
+       vrf: "{{ vrf_name }}"
+       state: present
+     delegate_to: localhost
+   
