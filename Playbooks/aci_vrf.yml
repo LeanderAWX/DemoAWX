@@ -1,1 +1,25 @@
+- name: Play 2 Create a vrf
+  hosts: all
+  gather_facts: no
+######
 
+  tasks:
+
+   - set_fact:
+      aci_login: &aci_login
+        host: "{{ inventory_hostname }}"
+        username: "{{ lookup('env', 'ANSIBLE_NET_USERNAME') }}"
+        password: "{{ lookup('env', 'ANSIBLE_NET_PASSWORD') }}"
+        use_ssl: yes
+        validate_certs: no
+
+######Creat Tenant#####
+    - name: Add a new VRF to a tenant
+    cisco.aci.aci_vrf:
+      vrf: {{ vrf_name }}
+      tenant: {{ tenant_name }}
+      descr: FHFulda VRF
+      policy_control_preference: enforced
+      policy_control_direction: ingress
+      state: present
+    delegate_to: localhost
