@@ -20,6 +20,5 @@
        tenant: "{{ tenant_name }}"
        ap: "{{ ap_name }}"
        description: default ap
-       monitoring_policy: default
        state: present
      delegate_to: localhost
