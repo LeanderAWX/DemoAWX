@@ -22,7 +22,6 @@
        epg: "{{ epg_name }}"
        description: Web Intranet EPG
        bd: "{{ bd_name }}"
-       monitoring_policy: default
        preferred_group: yes
        state: present
      delegate_to: localhost
